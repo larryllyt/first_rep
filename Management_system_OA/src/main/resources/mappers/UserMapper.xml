@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ly.entity.User">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    <result column="account_no_expired" jdbcType="INTEGER" property="accountNoExpired" />
+    <result column="credentials_no_expired" jdbcType="INTEGER" property="credentialsNoExpired" />
+    <result column="account_no_locked" jdbcType="INTEGER" property="accountNoLocked" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, `password`, enabled, account_no_expired, credentials_no_expired, account_no_locked
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `user`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from `user`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ly.entity.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user` (username, `password`, enabled, 
+      account_no_expired, credentials_no_expired, 
+      account_no_locked)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, 
+      #{accountNoExpired,jdbcType=INTEGER}, #{credentialsNoExpired,jdbcType=INTEGER}, 
+      #{accountNoLocked,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ly.entity.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="accountNoExpired != null">
+        account_no_expired,
+      </if>
+      <if test="credentialsNoExpired != null">
+        credentials_no_expired,
+      </if>
+      <if test="accountNoLocked != null">
+        account_no_locked,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="accountNoExpired != null">
+        #{accountNoExpired,jdbcType=INTEGER},
+      </if>
+      <if test="credentialsNoExpired != null">
+        #{credentialsNoExpired,jdbcType=INTEGER},
+      </if>
+      <if test="accountNoLocked != null">
+        #{accountNoLocked,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="accountNoExpired != null">
+        account_no_expired = #{accountNoExpired,jdbcType=INTEGER},
+      </if>
+      <if test="credentialsNoExpired != null">
+        credentials_no_expired = #{credentialsNoExpired,jdbcType=INTEGER},
+      </if>
+      <if test="accountNoLocked != null">
+        account_no_locked = #{accountNoLocked,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    set username = #{username,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=INTEGER},
+      account_no_expired = #{accountNoExpired,jdbcType=INTEGER},
+      credentials_no_expired = #{credentialsNoExpired,jdbcType=INTEGER},
+      account_no_locked = #{accountNoLocked,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByUsername" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user where username=#{username,jdbcType=VARCHAR}
+  </select>
+</mapper>

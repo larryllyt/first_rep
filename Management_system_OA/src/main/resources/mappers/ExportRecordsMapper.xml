@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.dao.ExportRecordsMapper">
+  <resultMap id="BaseResultMap" type="com.ly.entity.ExportRecords">
+    <!--@mbg.generated-->
+    <!--@Table export_records-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="export_time" jdbcType="TIMESTAMP" property="exportTime" />
+    <result column="export_url" jdbcType="VARCHAR" property="exportUrl" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_name, export_time, export_url, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from export_records
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from export_records
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ly.entity.ExportRecords" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into export_records (user_name, export_time, export_url, 
+      remark)
+    values (#{userName,jdbcType=VARCHAR}, #{exportTime,jdbcType=TIMESTAMP}, #{exportUrl,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ly.entity.ExportRecords" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into export_records
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="exportTime != null">
+        export_time,
+      </if>
+      <if test="exportUrl != null">
+        export_url,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="exportTime != null">
+        #{exportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exportUrl != null">
+        #{exportUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.entity.ExportRecords">
+    <!--@mbg.generated-->
+    update export_records
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="exportTime != null">
+        export_time = #{exportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exportUrl != null">
+        export_url = #{exportUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.entity.ExportRecords">
+    <!--@mbg.generated-->
+    update export_records
+    set user_name = #{userName,jdbcType=VARCHAR},
+      export_time = #{exportTime,jdbcType=TIMESTAMP},
+      export_url = #{exportUrl,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
